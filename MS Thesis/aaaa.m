@@ -34,11 +34,11 @@ save('1024_1024-32')
 
 % t = templateSVM('Standardize',true,'KernelFunction','rbf');
 % 
-% for i=1:100
-% svmMdl = fitcecoc(X0point5,Y,'Kfold',5);
-% labels = kfoldPredict(svmMdl);
-% accuracy0point5(i,:) = sum((labels == Y)/length(Y)*100)
-% end
+for i=1:100
+svmMdl = fitcecoc(X0point5,Y,'Kfold',5);
+labels = kfoldPredict(svmMdl);
+accuracy0point5(i,:) = sum((labels == Y)/length(Y)*100)
+end
 % 
 % for i=1:100
 % svmMdl = fitcecoc(X1,Y,'Kfold',5);

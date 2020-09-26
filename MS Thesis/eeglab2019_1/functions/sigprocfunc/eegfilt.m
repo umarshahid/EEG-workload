@@ -70,7 +70,7 @@ end
 %   error('*** eegfilt() requires the signal processing toolbox. ***');
 %end
 
-[chans frames] = size(data);
+[chans frames] = size(data)
 if chans > 1 && frames == 1,
     help eegfilt
     error('input data should be a row vector.');

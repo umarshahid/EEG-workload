@@ -169,6 +169,9 @@ for k=1:blocksize
     U = U + reshape(bsxfun(@times,reshape(X(range,:),[],1,C),reshape(X(range,:),[],C,1)),size(U));
 end
 
+real(reshape(block_geometric_median(U/blocksize),C,C))
+
+
 % get the mixing matrix M
 M = sqrtm(real(reshape(block_geometric_median(U/blocksize),C,C)));
 
