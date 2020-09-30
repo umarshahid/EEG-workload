@@ -1,0 +1,15 @@
+
+function x=asr_eegid(EEG.data)
+%fs=512;
+%winsize=fs*0.5;
+
+for i=1:256:length(EEG.data)
+    sd_of_window = std(EEG.data(i:i+255))
+    mean_of_window = mean(EEG.data(i:i+255))
+    threshold = mean_of_window+(sd_of_window*3)
+    for j=i:i+255
+        if EEG.data(j)>threshold
+            EEG.data(j)= mean_of_window;
+        end
+    end
+end
