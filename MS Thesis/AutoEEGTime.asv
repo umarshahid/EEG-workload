@@ -11,9 +11,9 @@ for j=1:2
             EEG = clean_asr(EEG,asr);
             EEG.data=reref(EEG.data);
             
-            features=td_features(EEG.data, wins);
+            Area=td_features(EEG.data, wins);
   
-            Data(:,i)=features(:);
+            Data(:,i)=Area;
            
         else
             setname = ['sub' int2str(i) '_hi.txt'];
@@ -27,7 +27,7 @@ for j=1:2
            
             features=td_features(EEG.data, wins);
        
-            Data(:,i+45)=features(:);
+            Data(:,i+45)=Area(:);
            
         end
     end

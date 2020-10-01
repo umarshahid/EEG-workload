@@ -18,8 +18,8 @@ for j=1:2
             %             EEG.data(4,:)=[];
             %% combined band powers
             Power=BandPow(EEG, wins, ovrlp);
-            % Data(:,i)=Power(:);
-            Data(:,i)=Power;
+            Data(:,i)=Power(:);
+%             Data(:,i)=Power;
             %% Individual Bnad powers
 %             [deltaPower, thetaPower, alphaPower, betaPower, gammaPower]=BandPow(EEG, wins, ovrlp);
 %             deltaData(:,i)=deltaPower(:);
@@ -44,8 +44,8 @@ for j=1:2
             %             EEG.data(4,:)=[];
             %% combined band powers
             Power=BandPow(EEG, wins, ovrlp);
-%             Data(:,i+45)=Power(:);
-            Data(:,i+45)=Power;
+            Data(:,i+45)=Power(:);
+%             Data(:,i+45)=Power;
             %% Individual Band powers
 %             [deltaPower, thetaPower, alphaPower, betaPower, gammaPower]=BandPow(EEG, wins, ovrlp);
 %             deltaData(:,i+45)=deltaPower(:);
