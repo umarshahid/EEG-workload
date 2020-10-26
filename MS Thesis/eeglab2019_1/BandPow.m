@@ -56,23 +56,24 @@ for n=1:14 % for aal electrodes n=1:14
 %       EWI = (r_theta + r_alpha)/(r_beta + r_gamma);
 %       CLI(:,n) = (r_theta / r_alpha);
 
-% individual bands 
+%% individual bands 
 %     deltaPower(1,n) = mean(10.^(spectra(deltaIdx)/10));
-    thetaPower(1,n) = mean(10.^(spectra(thetaIdx)/10));
-    alphaPower(1,n) = mean(10.^(spectra(alphaIdx)/10));
-    betaPower(1,n)  = mean(10.^(spectra(betaIdx)/10));
-    gammaPower(1,n) = mean(10.^(spectra(gammaIdx)/10));
+%     thetaPower(1,n) = mean(10.^(spectra(thetaIdx)/10));
+%     alphaPower(1,n) = mean(10.^(spectra(alphaIdx)/10));
+%     betaPower(1,n)  = mean(10.^(spectra(betaIdx)/10));
+%     gammaPower(1,n) = mean(10.^(spectra(gammaIdx)/10));
     
-    Power(1,n) = thetaPower(1,n);
-    Power(2,n) = alphaPower(1,n);
-    Power(3,n) = betaPower(1,n);
-    Power(4,n) = (r_theta + r_alpha)/(r_beta + r_gamma);
-    Power(5,n) = (r_theta / r_alpha); 
-    Power(6,n) = (r_theta+ r_alpha)/ r_beta;
-    Power(7,n) = f1(1,n);
-    Power(8,n) = f1(2,n)
-    Power(9,n) = f1(3,n)
-    Power(10,n) = f1(4,n)
+    Power(1,n) = mean(10.^(spectra(thetaIdx)/10));
+    Power(2,n) = mean(10.^(spectra(alphaIdx)/10));
+    Power(3,n) = mean(10.^(spectra(betaIdx)/10));
+    Power(4,n) = mean(10.^(spectra(gammaIdx)/10))
+%     Power(4,n) = (mean(10.^(spectra(thetaIdx)/10)) + mean(10.^(spectra(alphaIdx)/10)))/(mean(10.^(spectra(betaIdx)/10)) + mean(10.^(spectra(gammaIdx)/10)));
+%     Power(5,n) = (mean(10.^(spectra(thetaIdx)/10)) / mean(10.^(spectra(alphaIdx)/10))); 
+%     Power(6,n) = (mean(10.^(spectra(thetaIdx)/10))+ mean(10.^(spectra(alphaIdx)/10)))/ mean(10.^(spectra(betaIdx)/10));
+   Power(5,n) = f1(1,n);
+%   Power(6,n) = f1(2,n)
+%      Power(6,n) = f1(3,n)
+%     Power(10,n) = f1(4,n)
     
  
 
