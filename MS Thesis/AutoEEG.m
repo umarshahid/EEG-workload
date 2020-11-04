@@ -1,25 +1,22 @@
 function X = AutoEEG(asr, wins, ovrlp)
+%% for individual band extraction 
 % function [deltaX, thetaX, alphaX, betaX, gammaX] = AutoEEG(asr, wins, ovrlp)
-for j=1:2
-    for i=1:45
+%% processing 
+for j=1:2       % loop 1 for pre test recordings, 2 for post test recordings
+    for i=1:45  % total number of subjects 45
         if j==1
-            setname = ['sub' int2str(i) '_lo.txt'];
-            EEG = pop_importdata( 'data',setname,'srate',128,'setname','sub_lo');
+            setname = ['sub' int2str(i) '_lo.txt'];                                  % 'sub1_lo.txt'
+            EEG = pop_importdata( 'data',setname,'srate',128,'setname','sub_lo');    % import data in EEGLAB
+     
+            EEG = pop_eegfiltnew(EEG, 'locutoff',1);                                 % High pass filteration at 1 hz, for low pass filteration use 'hicutoff',50
+            EEG=cleanline(EEG,'winsize',5,'winstep',3,'linefreqs',60);               % line noise removal at 60 Hz
+            EEG = clean_asr(EEG,asr);                                                % Artifact subspace reconstruction 
+            EEG.data=reref(EEG.data);                                                % Data re-referencing
             
-            EEG = pop_eegfiltnew(EEG, 'locutoff',1);
-            EEG=cleanline(EEG,'winsize',5,'winstep',3,'linefreqs',60);
-            EEG = clean_asr(EEG,asr);
-            EEG.data=reref(EEG.data);
-            %             EEG.data(11,:)=[];
-            %             EEG.data(10,:)=[];
-            %             EEG.data(8,:)=[];
-            %             EEG.data(7,:)=[];
-            %             EEG.data(5,:)=[];
-            %             EEG.data(4,:)=[];
             %% combined band powers
-            Power=BandPow(EEG, wins, ovrlp);
-            Data(:,i)=Power(:);
-%             Data(:,i)=Power;
+            Power=BandPow(EEG, wins, ovrlp);                                         % band power extraction 
+            Data(:,i)=Power(:);                                                      % feature vectors matrix
+            
             %% Individual Bnad powers
 %             [deltaPower, thetaPower, alphaPower, betaPower, gammaPower]=BandPow(EEG, wins, ovrlp);
 %             deltaData(:,i)=deltaPower(:);
@@ -28,24 +25,18 @@ for j=1:2
 %             betaData(:,i)=betaPower(:);
 %             gammaData(:,i)=gammaPower(:);
         else
-            setname = ['sub' int2str(i) '_hi.txt'];
-            EEG = pop_importdata( 'data',setname,'srate',128,'setname','sub_lo');
+            setname = ['sub' int2str(i) '_hi.txt'];                                   % 'sub1_hi.txt'
+            EEG = pop_importdata( 'data',setname,'srate',128,'setname','sub_hi');     % import data in EEGLAB
            
+            EEG = pop_eegfiltnew(EEG, 'locutoff',1);                                  % High pass filteration at 1 hz, for low pass filteration use 'hicutoff',50
+            EEG=cleanline(EEG,'winsize',5,'winstep',3,'linefreqs',60);                % line noise removal at 60 Hz
+            EEG = clean_asr(EEG,asr);                                                 % Artifact subspace reconstruction 
+            EEG.data=reref(EEG.data);                                                 % Data re-referencing
 
-            EEG = pop_eegfiltnew(EEG, 'locutoff',1);
-            EEG=cleanline(EEG,'winsize',5,'winstep',3,'linefreqs',60);
-            EEG = clean_asr(EEG,asr);
-            EEG.data=reref(EEG.data);
-            %             EEG.data(11,:)=[];
-            %             EEG.data(10,:)=[];
-            %             EEG.data(8,:)=[];
-            %             EEG.data(7,:)=[];
-            %             EEG.data(5,:)=[];
-            %             EEG.data(4,:)=[];
             %% combined band powers
-            Power=BandPow(EEG, wins, ovrlp);
-            Data(:,i+45)=Power(:);
-%             Data(:,i+45)=Power;
+            Power=BandPow(EEG, wins, ovrlp);                                          % band power extraction
+            Data(:,i+45)=Power(:);                                                    % feature vectors matrix
+
             %% Individual Band powers
 %             [deltaPower, thetaPower, alphaPower, betaPower, gammaPower]=BandPow(EEG, wins, ovrlp);
 %             deltaData(:,i+45)=deltaPower(:);
