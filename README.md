@@ -1,3 +1,5 @@
+EEG-workload is a pipeline for mental workload assessment using machine learning (SVM Support Vector Machine). Pipeline is based on MATLAB toolbox EEGLAB and is tested in MATLAB R2019a.
+
 # EEG-workload
 Regarding EEG based mental worklaod assessment using machine learning.
 
