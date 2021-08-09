@@ -1,4 +1,4 @@
-# EEG based mental worklaod assessment using machine learning
+# EEG-Based Mental Worklaod Assessment using Machine Learning
 
 # Ms Thesis
 This is the main folder of MS research work regarding EEG based mental workload assessment on benchmark STEW dataset.
